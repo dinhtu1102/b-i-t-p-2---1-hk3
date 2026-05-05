@@ -1,4 +1,4 @@
-<img width="1918" height="1073" alt="image" src="https://github.com/user-attachments/assets/deb95030-b1f7-4d8c-b317-841c0ff95254" /># bài tập 2 - đề 1 
+# bài tập 2 - đề 1 
 
 # Họ tên : Nguyễn Đình Tú
 

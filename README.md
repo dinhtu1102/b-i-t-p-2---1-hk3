@@ -231,4 +231,57 @@ Site Address (URL): http://web.dinhtu.id.vn
 
 <img width="1911" height="1027" alt="image" src="https://github.com/user-attachments/assets/ca9798f7-bc96-45bb-a521-45b2e615f4c7" />
 
+# Yêu cầu chính 
 
+* SỬ DỤNG DOCKER TRÊN UBUNTU ĐỂ TẠO docker ccompose chứa:
+
+Mariadb: sử dụng image: mariadb:latest để làm hệ quản trị csdl cho wordpress
+
+
+Phpmyadmin: sư dụng image: phpmyadmin:latest để đăng nhập vào mariadb rồi tạo csdl trống (chỉ để xem, ko cần tạo bảng từ đây, wordpress sẽ làm hết)
+
+<img width="1909" height="1024" alt="image" src="https://github.com/user-attachments/assets/2b5c16c5-803e-44bc-a843-bdd2fdd450e2" />
+
+WordPress: Sử dụng image: wordpress:latest, truyền các tham số môi trường cho wordpress là các thông tin truy cập csdl mariadb, tạo bởi Phpmyadmin
+
+<img width="1919" height="1073" alt="image" src="https://github.com/user-attachments/assets/3e4196b0-ef8b-4f78-ac72-cc5d4b663f49" />
+
+* Yêu cầu: sau khi có 3 service này trong file docker-compose.yml :
+
+Cấu hình để hệ thống chạy
+
+Sử dụng cloudflare tunnel để public web này lên 1 sub-domain
+
+- Tạo 1 bài viết trong wordpress giới thiệu về bản thân sinh viên: thông tin cá nhân, sở thích, ... bài viết có thể chứa hình ảnh, âm thanh, video, ...
+
++ Hình ảnh chứa thông tin cá nhân:
+
+<img width="1906" height="1029" alt="image" src="https://github.com/user-attachments/assets/e186941e-a010-4f2a-b856-8f0bf86a76d6" />
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/3c81b7fb-d8d4-41de-b713-18be4453dc31" />
+
+- Tạo 1 bài viết trong wordpress giới thiệu về ngành học mà em yêu thích trong trường TNUT. bài viết phải chứa hình ảnh, video, ...
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ad77ae4b-aa18-4467-9816-e3e55f27a5ca" />
+
+* Nhận xét 
+
+1. Công sức triển khai
+
+Tiết kiệm thời gian: Thay vì phải code từng dòng HTML/CSS/PHP, WordPress cho phép xây dựng một website hoàn chỉnh chỉ trong vài phút sau khi cài đặt xong môi trường Docker.
+
+Quản trị dễ dàng: Việc thay đổi giao diện (Theme) hay thêm tính năng (Plugin) được thực hiện qua giao diện kéo thả, không đòi hỏi kiến thức lập trình phức tạp.
+
+2. Độ khó/dễ khi sử dụng
+
+Dễ dùng: Giao diện quản trị (Dashboard) trực quan, hỗ trợ tiếng Việt tốt, cộng đồng hỗ trợ cực lớn.
+
+Khó khăn: Khó khăn nhất nằm ở bước cấu hình máy chủ (Ubuntu, Docker) và thiết lập kết nối an toàn (Cloudflare Tunnel). Khi đã xong bước này, việc sử dụng WordPress cực kỳ đơn giản.
+
+3. Tài nguyên hệ thống (RAM/CPU/Disk)
+
+RAM: WordPress chạy trên Docker tiêu tốn khoảng 400MB - 600MB RAM (bao gồm cả PHP engine). Nếu cài thêm nhiều plugin, con số này có thể tăng lên.
+
+CPU: Khi không có lượt truy cập, CPU gần như ở mức 0-1%. Tuy nhiên, khi xử lý các yêu cầu phức tạp (như nén ảnh, xử lý video), CPU có thể nhảy vọt trong thời gian ngắn.
+
+Lưu trữ: Mã nguồn WordPress khá nhẹ, nhưng cơ sở dữ liệu MariaDB sẽ phình to nhanh chóng nếu website có nhiều bài viết và bình luận. Việc sử dụng Docker giúp quản lý tài nguyên này một cách tách biệt và hiệu quả.

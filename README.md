@@ -1,4 +1,4 @@
-# BÀI TẬP 3 - đề 1 
+# BÀI TẬP 3 
 
 # Họ tên : Nguyễn Đình Tú
 
